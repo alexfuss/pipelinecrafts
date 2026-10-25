@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PipelineCrafts — Production-Ready B2B Workflows &amp; n8n Blueprints</title>
+  <meta name="description" content="Deploy production-tested n8n and Make automation blueprints for B2B lead enrichment, intent scoring, and CRM routing in minutes. ES6 code included, self-hosted ready." />
+  <meta name="keywords" content="n8n templates, n8n blueprints, Make scenarios, B2B automation, lead enrichment, intent scoring, CRM routing, HubSpot automation" />
+  <meta name="author" content="PipelineCrafts" />
+  <meta name="theme-color" content="#F3EDE2" />
+  <link rel="canonical" href="https://pipelinecrafts.com/" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PipelineCrafts" />
+  <meta property="og:title" content="Production-Ready B2B Workflows & n8n Blueprints | PipelineCrafts" />
+  <meta property="og:description" content="Skip weeks of custom integration engineering. Deploy pre-built automation assets for lead enrichment, intent scoring, and CRM routing." />
+  <meta property="og:url" content="https://pipelinecrafts.com/" />
+  <meta property="og:image" content="https://pipelinecrafts.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Production-Ready B2B Workflows & n8n Blueprints | PipelineCrafts" />
+  <meta name="twitter:description" content="Pre-built n8n & Make blueprints for lead enrichment, intent scoring, and CRM routing." />
+  <meta name="twitter:image" content="https://pipelinecrafts.com/og-image.png" />
+
+  <!-- Favicon (inline SVG, no extra file needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232B2B2B'/%3E%3Cpath d='M9 10h14M9 16h9M9 22h5' stroke='%23F3EDE2' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window.tailwind) tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+          },
+          colors: {
+            oat: { DEFAULT: '#F3EDE2', 50: '#F9F6F0' },   // Warm Oatmeal
+            stone: { DEFAULT: '#D8D1C7' },                // Textured Gray
+            charcoal: { DEFAULT: '#2B2B2B', 800: '#343331' }, // Deep Charcoal
+          },
+          boxShadow: {
+            card: '0 1px 2px rgba(43,43,43,.04), 0 12px 32px -16px rgba(43,43,43,.18)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "B2B Inbound Lead Enrichment & Intent Router",
+    "description": "Production-ready n8n blueprint: webhook intake, Clearbit/Apollo enrichment, AI intent classification, Slack alerts and HubSpot CRM routing.",
+    "brand": { "@type": "Brand", "name": "PipelineCrafts" },
+    "offers": {
+      "@type": "Offer",
+      "price": "79.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://pipelinecrafts.com/#featured"
+    }
+  }
+  </script>
+
+  <style>
+    :root { color-scheme: light; }
+    body { background-color: #F3EDE2; }
+    .grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(43,43,43,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(43,43,43,.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at top, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at top, #000 30%, transparent 75%);
+    }
+    .faq-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+    .faq-item[data-open="true"] .faq-panel { grid-template-rows: 1fr; }
+    .faq-item[data-open="true"] .faq-icon { transform: rotate(45deg); }
+    .flow-line { background: linear-gradient(to bottom, rgba(243,237,226,.45), rgba(243,237,226,.08)); }
+    h1, h2, h3 { text-wrap: balance; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+    .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .pulse-dot { animation: none; }
+      .faq-panel { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-charcoal antialiased selection:bg-stone selection:text-charcoal">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-charcoal focus:px-4 focus:py-2 focus:text-oat">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-200">
+    <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6" aria-label="Primary">
+      <a href="#top" class="flex items-center gap-2.5" data-scroll>
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-charcoal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="#F3EDE2" stroke-width="3" stroke-linecap="round"><path d="M5 6h14M5 12h9M5 18h5"/></svg>
+        </span>
+        <span class="text-[15px] font-semibold tracking-tight text-charcoal">PipelineCrafts</span>
+      </a>
+
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="#featured" data-scroll class="nav-link text-sm text-charcoal/70 transition hover:text-charcoal">Featured</a>
+        <a href="#how-it-works" data-scroll class="nav-link text-sm text-charcoal/70 transition hover:text-charcoal">How it works</a>
+        <a href="#faq" data-scroll class="nav-link text-sm text-charcoal/70 transition hover:text-charcoal">FAQ</a>
+        <a href="#support" data-scroll class="nav-link text-sm text-charcoal/70 transition hover:text-charcoal">Support</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#featured" data-scroll class="hidden rounded-lg bg-charcoal px-4 py-2 text-sm font-semibold text-oat transition hover:bg-black sm:inline-flex">Browse Templates</a>
+        <button id="menu-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-stone text-charcoal md:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden border-t border-stone bg-oat/95 backdrop-blur md:hidden">
+      <div class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4">
+        <a href="#featured" data-scroll class="rounded-md px-3 py-2.5 text-sm text-charcoal hover:bg-stone/50">Featured</a>
+        <a href="#how-it-works" data-scroll class="rounded-md px-3 py-2.5 text-sm text-charcoal hover:bg-stone/50">How it works</a>
+        <a href="#faq" data-scroll class="rounded-md px-3 py-2.5 text-sm text-charcoal hover:bg-stone/50">FAQ</a>
+        <a href="#support" data-scroll class="rounded-md px-3 py-2.5 text-sm text-charcoal hover:bg-stone/50">Support</a>
+        <a href="#featured" data-scroll class="mt-2 rounded-lg bg-charcoal px-4 py-2.5 text-center text-sm font-semibold text-oat">Browse Templates</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <div class="grid-bg pointer-events-none absolute inset-0" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-stone/60 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-stone bg-oat-50/70 px-3 py-1 text-xs font-medium text-charcoal/70">
+          <span class="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
+          New: Lead Enrichment &amp; Intent Router v1.0
+        </div>
+
+        <h1 class="text-4xl font-extrabold leading-[1.1] tracking-tight text-charcoal sm:text-5xl md:text-6xl">
+          Production-Ready B2B Workflows &amp; <span class="underline decoration-stone decoration-[6px] underline-offset-[10px]">n8n Blueprints</span>
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-charcoal/70 sm:text-lg">
+          Skip weeks of custom integration engineering. Deploy pre-built, production-tested automation assets for lead enrichment, intent scoring, and CRM routing in minutes.
+        </p>
+
+        <div class="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <a href="https://pipelinecrafts.lemonsqueezy.com/checkout/buy/92a91208-8d81-4235-8efe-3b0fd96680d3" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-lg bg-charcoal px-6 py-3.5 text-sm font-semibold text-oat shadow-card transition hover:bg-black">
+            Get n8n Lead Enrichment Blueprint ($79)
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#how-it-works" data-scroll class="inline-flex items-center justify-center rounded-lg border border-charcoal/25 bg-oat-50/60 px-6 py-3.5 text-sm font-semibold text-charcoal transition hover:border-charcoal">
+            View Documentation
+          </a>
+        </div>
+
+        <ul class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-charcoal/70">
+          <li class="flex items-center gap-2"><svg class="h-4 w-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>n8n &amp; Make Compatible</li>
+          <li class="flex items-center gap-2"><svg class="h-4 w-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>ES6 Code Included</li>
+          <li class="flex items-center gap-2"><svg class="h-4 w-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Self-Hosted Ready</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PRODUCT ============ -->
+    <section id="featured" class="scroll-mt-20 border-t border-stone py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="mb-12 max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-charcoal/70">Featured blueprint</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-charcoal sm:text-4xl">Turn raw form fills into routed, scored pipeline.</h2>
+        </div>
+
+        <article class="overflow-hidden rounded-2xl border border-stone bg-oat-50 shadow-card">
+          <div class="grid lg:grid-cols-2">
+
+            <!-- Flow preview -->
+            <div class="border-b border-stone bg-stone/40 p-4 sm:p-6 lg:border-b-0 lg:border-r">
+              <div class="overflow-hidden rounded-xl bg-charcoal text-oat shadow-card">
+                <div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+                  <span class="ml-3 truncate font-mono text-xs text-oat/60">lead-enrichment-router.json</span>
+                  <span class="ml-auto flex items-center gap-1.5 text-[11px] font-medium text-emerald-300"><span class="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400"></span>active</span>
+                </div>
+
+                <ol class="relative space-y-3 p-4 sm:p-5" aria-label="Workflow node sequence">
+                  <!-- connector line -->
+                  <span class="flow-line absolute left-[2.15rem] top-9 bottom-9 w-px sm:left-[2.4rem]" aria-hidden="true"></span>
+
+                  <li class="relative flex items-center gap-3 rounded-lg border border-white/10 bg-charcoal-800 p-3">
+                    <span class="z-10 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-oat/10 text-[11px] font-semibold text-oat">01</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-oat">Webhook Trigger</p>
+                      <p class="truncate text-[11px] text-oat/60">POST /lead-intake · parse + sanitize</p>
+                    </div>
+                    <span class="ml-auto shrink-0 text-[11px] tabular-nums text-oat/60">12ms</span>
+                  </li>
+
+                  <li class="relative flex items-center gap-3 rounded-lg border border-white/10 bg-charcoal-800 p-3">
+                    <span class="z-10 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-oat/10 text-[11px] font-semibold text-oat">02</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-oat">Clearbit / Apollo API</p>
+                      <p class="truncate text-[11px] text-oat/60">firmographics · fallback on miss</p>
+                    </div>
+                    <span class="ml-auto shrink-0 text-[11px] tabular-nums text-oat/60">340ms</span>
+                  </li>
+
+                  <li class="relative flex items-center gap-3 rounded-lg border border-oat/40 bg-charcoal-800 p-3">
+                    <span class="z-10 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-oat text-[11px] font-semibold text-charcoal">03</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-oat">Claude 3.5 Sonnet · Intent</p>
+                      <p class="truncate text-[11px] text-oat/60">classify → hot | warm | nurture</p>
+                    </div>
+                    <span class="ml-auto shrink-0 rounded bg-oat/10 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-oat">score 87</span>
+                  </li>
+
+                  <li class="relative flex items-center gap-3 rounded-lg border border-white/10 bg-charcoal-800 p-3">
+                    <span class="z-10 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-oat/10 text-[11px] font-semibold text-oat">04</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-oat">Slack Alert</p>
+                      <p class="truncate text-[11px] text-oat/60">#sales-hot-leads · if score ≥ 75</p>
+                    </div>
+                    <span class="ml-auto shrink-0 text-[11px] tabular-nums text-oat/60">88ms</span>
+                  </li>
+
+                  <li class="relative flex items-center gap-3 rounded-lg border border-white/10 bg-charcoal-800 p-3">
+                    <span class="z-10 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-oat/10 text-[11px] font-semibold text-oat">05</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-oat">HubSpot CRM</p>
+                      <p class="truncate text-[11px] text-oat/60">upsert contact · assign owner</p>
+                    </div>
+                    <span class="ml-auto shrink-0 text-[11px] tabular-nums text-oat/60">210ms</span>
+                  </li>
+                </ol>
+
+                <pre class="overflow-x-auto border-t border-white/10 px-4 py-3 font-mono text-[11px] leading-relaxed text-oat/80"><code><span class="text-oat/45">// Code node · sanitize-domain.js</span>
+<span class="text-stone">const</span> domain = $json.email.<span class="text-oat">split</span>(<span class="text-amber-200/90">'@'</span>)[<span class="text-amber-200/90">1</span>]?.<span class="text-oat">toLowerCase</span>().<span class="text-oat">trim</span>();
+<span class="text-stone">return</span> { ...$json, domain, isFreeMail: FREE.<span class="text-oat">has</span>(domain) };</code></pre>
+              </div>
+            </div>
+
+            <!-- Product details -->
+            <div class="flex flex-col p-6 sm:p-8 lg:p-10">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-md border border-stone px-2 py-0.5 text-[11px] font-medium text-charcoal/70">n8n</span>
+                <span class="rounded-md border border-stone px-2 py-0.5 text-[11px] font-medium text-charcoal/70">Make</span>
+                <span class="rounded-md border border-stone px-2 py-0.5 text-[11px] font-medium text-charcoal/70">v1.0</span>
+              </div>
+
+              <h3 class="mt-4 text-2xl font-bold tracking-tight text-charcoal sm:text-3xl">B2B Inbound Lead Enrichment &amp; Intent Router</h3>
+
+              <div class="mt-4 flex flex-wrap items-baseline gap-3">
+                <span class="text-4xl font-extrabold text-charcoal">$79</span>
+                <span class="text-sm text-charcoal/70">one-time</span>
+                <span class="rounded-full bg-stone px-2.5 py-0.5 text-xs font-medium text-charcoal">Lifetime Updates</span>
+              </div>
+
+              <ul class="mt-8 space-y-4 text-charcoal/85">
+                <li class="flex gap-3">
+                  <svg class="mt-0.5 h-5 w-5 shrink-0 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span>Automated JSON payload parsing &amp; email domain sanitization</span>
+                </li>
+                <li class="flex gap-3">
+                  <svg class="mt-0.5 h-5 w-5 shrink-0 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span>Zero-API-key fallback logic for incomplete lead data</span>
+                </li>
+                <li class="flex gap-3">
+                  <svg class="mt-0.5 h-5 w-5 shrink-0 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span>Custom ES6 JS transformation nodes included</span>
+                </li>
+                <li class="flex gap-3">
+                  <svg class="mt-0.5 h-5 w-5 shrink-0 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span>Complete <code class="rounded bg-stone/70 px-1.5 py-0.5 font-mono text-[13px] text-charcoal">README.md</code> step-by-step setup guide</span>
+                </li>
+              </ul>
+
+              <div class="mt-auto pt-10">
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <a href="https://pipelinecrafts.lemonsqueezy.com/checkout/buy/92a91208-8d81-4235-8efe-3b0fd96680d3" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-lg bg-charcoal px-5 py-3.5 text-sm font-semibold text-oat transition hover:bg-black">
+                    Buy on Lemon Squeezy
+                  </a>
+                  <a href="https://fussology.gumroad.com/l/enindk" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-lg border border-charcoal/25 bg-oat px-5 py-3.5 text-sm font-semibold text-charcoal transition hover:border-charcoal">
+                    Buy on Gumroad
+                  </a>
+                </div>
+                <p class="mt-4 text-center text-xs text-charcoal/70">Instant download · Secure checkout · Commercial use license</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section id="how-it-works" class="scroll-mt-20 border-t border-stone py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="mb-14 max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-charcoal/70">How it works</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-charcoal sm:text-4xl">From checkout to live workflow in three steps.</h2>
+          <p class="mt-4 text-charcoal/70">No build tools, no vendor lock-in. Each blueprint ships as a portable JSON file plus a setup guide written for engineers.</p>
+        </div>
+
+        <ol class="grid gap-6 md:grid-cols-3">
+          <li class="rounded-2xl border border-stone bg-oat-50 p-6 sm:p-8">
+            <span class="text-sm font-semibold text-charcoal/70">Step 1</span>
+            <h3 class="mt-3 text-lg font-semibold text-charcoal">Download JSON Blueprint &amp; Setup Guide</h3>
+            <p class="mt-2 text-sm leading-relaxed text-charcoal/70">Get instant access to the workflow file, ES6 code nodes, and a full README after checkout.</p>
+            <pre class="mt-6 overflow-x-auto rounded-lg bg-charcoal p-3 font-mono text-[12px] text-oat/80"><code>$ unzip pipelinecrafts-lead-router.zip
+  ├─ workflow.json
+  ├─ nodes/*.js
+  └─ README.md</code></pre>
+          </li>
+          <li class="rounded-2xl border border-stone bg-oat-50 p-6 sm:p-8">
+            <span class="text-sm font-semibold text-charcoal/70">Step 2</span>
+            <h3 class="mt-3 text-lg font-semibold text-charcoal">Import into self-hosted or cloud n8n</h3>
+            <p class="mt-2 text-sm leading-relaxed text-charcoal/70">Use n8n's "Import from File" or paste the JSON straight onto your canvas. Make scenario included.</p>
+            <pre class="mt-6 overflow-x-auto rounded-lg bg-charcoal p-3 font-mono text-[12px] text-oat/80"><code>Workflows → Import from File
+  → workflow.json
+  ✓ 14 nodes imported</code></pre>
+          </li>
+          <li class="rounded-2xl border border-stone bg-oat-50 p-6 sm:p-8">
+            <span class="text-sm font-semibold text-charcoal/70">Step 3</span>
+            <h3 class="mt-3 text-lg font-semibold text-charcoal">Map API environment variables &amp; deploy</h3>
+            <p class="mt-2 text-sm leading-relaxed text-charcoal/70">Add your credentials once, activate the workflow, and point your forms at the webhook URL.</p>
+            <pre class="mt-6 overflow-x-auto rounded-lg bg-charcoal p-3 font-mono text-[12px] text-oat/80"><code>APOLLO_API_KEY=•••••
+ANTHROPIC_API_KEY=•••••
+HUBSPOT_TOKEN=•••••
+<span class="text-emerald-300">✓ workflow active</span></code></pre>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ STACK GRID ============ -->
+    <section id="stack" class="scroll-mt-20 border-t border-stone py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="mb-12 max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-charcoal/70">Technical specifications</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-charcoal sm:text-4xl">Built on the stack you already run.</h2>
+        </div>
+
+        <div id="stack-grid" class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-stone bg-stone sm:grid-cols-4">
+          <!-- Rendered by JS below for brevity; noscript fallback provided -->
+        </div>
+        <noscript>
+          <p class="mt-4 text-sm text-charcoal/70">Supported: n8n, Make, Webhooks, REST APIs, Claude AI, Slack, HubSpot, Salesforce.</p>
+        </noscript>
+
+        <dl class="mt-10 grid gap-6 text-sm sm:grid-cols-3">
+          <div class="rounded-xl border border-stone p-5">
+            <dt class="text-charcoal/70">Minimum n8n version</dt>
+            <dd class="mt-1 font-semibold text-charcoal">1.30+</dd>
+          </div>
+          <div class="rounded-xl border border-stone p-5">
+            <dt class="text-charcoal/70">Runtime</dt>
+            <dd class="mt-1 font-semibold text-charcoal">Docker · npm · n8n Cloud</dd>
+          </div>
+          <div class="rounded-xl border border-stone p-5">
+            <dt class="text-charcoal/70">Code nodes</dt>
+            <dd class="mt-1 font-semibold text-charcoal">Vanilla ES6, no dependencies</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section id="faq" class="scroll-mt-20 border-t border-stone py-20 sm:py-28">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-charcoal/70">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-charcoal sm:text-4xl">Questions, answered.</h2>
+
+        <div class="mt-10 divide-y divide-stone border-y border-stone">
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-charcoal" aria-expanded="false">
+                Do I need a paid n8n plan?
+                <svg class="faq-icon h-5 w-5 shrink-0 text-charcoal/60 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </h3>
+            <div class="faq-panel"><div class="overflow-hidden">
+              <p class="pb-5 text-charcoal/70">No. Every blueprint works on the free self-hosted Community Edition as well as any n8n Cloud plan.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-charcoal" aria-expanded="false">
+                How are updates delivered?
+                <svg class="faq-icon h-5 w-5 shrink-0 text-charcoal/60 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </h3>
+            <div class="faq-panel"><div class="overflow-hidden">
+              <p class="pb-5 text-charcoal/70">Instantly. New versions appear in your storefront library (Lemon Squeezy or Gumroad), and you'll get an email whenever an update ships.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <h3>
+              <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-charcoal" aria-expanded="false">
+                Can I customize the JavaScript code nodes?
+                <svg class="faq-icon h-5 w-5 shrink-0 text-charcoal/60 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </h3>
+            <div class="faq-panel"><div class="overflow-hidden">
+              <p class="pb-5 text-charcoal/70">Yes. All source files are 100% unlocked and commented. Fork, extend, and adapt them to your own stack.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / SUPPORT ============ -->
+    <section id="support" class="scroll-mt-20 border-t border-stone py-20 sm:py-28">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6">
+        <div class="rounded-2xl bg-charcoal px-6 py-12 text-center sm:px-12">
+          <h2 class="text-3xl font-bold tracking-tight text-oat">Ship your lead router today.</h2>
+          <p class="mx-auto mt-3 max-w-xl text-oat/75">Questions before you buy, or stuck during setup? Email us. A real engineer replies, usually within one business day.</p>
+          <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="https://pipelinecrafts.lemonsqueezy.com/checkout/buy/92a91208-8d81-4235-8efe-3b0fd96680d3" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-lg bg-oat px-6 py-3.5 text-sm font-semibold text-charcoal transition hover:bg-white">Get the Blueprint — $79</a>
+            <a href="mailto:support@pipelinecrafts.com" class="inline-flex items-center justify-center rounded-lg border border-oat/30 px-6 py-3.5 text-sm font-semibold text-oat transition hover:border-oat">support@pipelinecrafts.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-stone py-10">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-sm text-charcoal/70 sm:px-6 md:flex-row">
+      <p>&copy; <span id="year">2026</span> PipelineCrafts. All rights reserved.</p>
+      <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2" aria-label="Footer">
+        <a href="mailto:support@pipelinecrafts.com" class="transition hover:text-charcoal">support@pipelinecrafts.com</a>
+        <a href="https://pipelinecrafts.lemonsqueezy.com" target="_blank" rel="noopener" class="transition hover:text-charcoal">Lemon Squeezy Store</a>
+        <a href="https://fussology.gumroad.com" target="_blank" rel="noopener" class="transition hover:text-charcoal">Gumroad Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    (() => {
+      'use strict';
+
+      const header = document.getElementById('site-header');
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Header background on scroll
+      const onScroll = () => {
+        const scrolled = window.scrollY > 8;
+        header.classList.toggle('bg-oat/85', scrolled);
+        header.classList.toggle('backdrop-blur', scrolled);
+        header.classList.toggle('border-stone', scrolled);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu
+      const setMenu = (open) => {
+        mobileMenu.classList.toggle('hidden', !open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      };
+      menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+
+      // Smooth scrolling with fixed-header offset
+      document.querySelectorAll('a[data-scroll]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const id = link.getAttribute('href');
+          const target = id === '#top' ? document.body : document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          setMenu(false);
+          const y = id === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - header.offsetHeight;
+          window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+          history.replaceState(null, '', id);
+        });
+      });
+
+      // Active nav link highlighting
+      const navLinks = [...document.querySelectorAll('.nav-link')];
+      const sections = navLinks.map((l) => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((l) => {
+            const active = l.getAttribute('href') === `#${entry.target.id}`;
+            l.classList.toggle('text-charcoal', active);
+            l.classList.toggle('font-medium', active);
+            l.classList.toggle('text-charcoal/70', !active);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach((s) => observer.observe(s));
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-trigger').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const open = item.dataset.open !== 'true';
+          item.dataset.open = String(open);
+          btn.setAttribute('aria-expanded', String(open));
+        });
+      });
+
+      // Stack grid
+      const stack = [
+        { name: 'n8n', desc: 'Primary engine', icon: '<path d="M4 12h4m8 0h4M8 12a2 2 0 104 0 2 2 0 00-4 0zm4 0a2 2 0 104 0 2 2 0 00-4 0z"/>' },
+        { name: 'Make', desc: 'Scenario export', icon: '<circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/>' },
+        { name: 'Webhooks', desc: 'Inbound triggers', icon: '<path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"/>' },
+        { name: 'REST APIs', desc: 'Any HTTP endpoint', icon: '<path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/>' },
+        { name: 'Claude AI', desc: 'Intent scoring', icon: '<path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"/>' },
+        { name: 'Slack', desc: 'Real-time alerts', icon: '<path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>' },
+        { name: 'HubSpot', desc: 'CRM upsert', icon: '<circle cx="12" cy="12" r="3"/><path d="M12 3v6m0 6v6M3 12h6m6 0h6"/>' },
+        { name: 'Salesforce', desc: 'CRM routing', icon: '<path d="M7 18a4 4 0 01-.5-7.97A5 5 0 0116 8.5a3.5 3.5 0 011 6.86V15.5A2.5 2.5 0 0114.5 18H7z"/>' },
+      ];
+      document.getElementById('stack-grid').innerHTML = stack.map(({ name, desc, icon }) => `
+        <div class="group flex flex-col gap-4 bg-oat-50 p-5 transition hover:bg-oat sm:p-6">
+          <span class="grid h-10 w-10 place-items-center rounded-lg border border-stone bg-oat text-charcoal transition group-hover:border-charcoal group-hover:bg-charcoal group-hover:text-oat">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon}</svg>
+          </span>
+          <div>
+            <p class="font-semibold text-charcoal">${name}</p>
+            <p class="mt-0.5 text-xs text-charcoal/70">${desc}</p>
+          </div>
+        </div>`).join('');
+    })();
+  </script>
+</body>
+</html>
